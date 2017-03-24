@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidGPS</string>
+    <string name="edit_server_ip">Enter Server IP Address</string>
+    <string name="edit_server_port">Enter Server Port</string>
+    <string name="action_connect">Connect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="error_connect">Failed to connect</string>
+    <string name="connect">Connected</string>
+    <string name="disconnect">Disconnected, Please check your internet connection</string>
+</resources>
