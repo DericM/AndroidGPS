@@ -21,6 +21,8 @@ public class AndroidGPS extends Application {
     private Socket mSocket;
     private String mServerIP;
     private String mServerPort;
+    private String mUsername;
+    private String mPassword;
     private String mServerUrl;
     private boolean isConnected;
 
@@ -50,10 +52,12 @@ public class AndroidGPS extends Application {
         return isConnected;
     }
 
-    public void sendClientInfo(){
+    public void login(){
         JSONObject clientInfo = new JSONObject();
         try{
-            clientInfo.put("id", getDeviceID());
+            clientInfo.put("username", mUsername);
+            clientInfo.put("password", mPassword);
+            clientInfo.put("deviceID", getDeviceID());
             clientInfo.put("ipAddress", getClientIP());
             mSocket.emit("connected", clientInfo);
         }catch(JSONException ex){
@@ -62,11 +66,20 @@ public class AndroidGPS extends Application {
 
     }
 
+    public void setUsername(final String username){
+        mUsername = username;
+    }
+
+    public void setPassword(final String password){
+        mPassword = password;
+    }
+
     private String getClientIP(){
         WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
         return ipAddress;
     }
+
     private String getDeviceID(){
         TelephonyManager    telephonyManager;
 

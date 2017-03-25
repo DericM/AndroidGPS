@@ -4,16 +4,33 @@ var app = express();
 var server = require('http').createServer(app);  
 var io = require('socket.io')(server);
 var _ = require('lodash-node');
+var fs = require('fs');
 
 
 var users = [];
 
 app.use(express.static(__dirname + '/node_modules'));  
 app.get('/', function(req, res,next) {  
-	    res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/index.html');
+});
+app.get('/locations', function(req, res,next) { 
+
+	var data = '';
+
+	var readStream = fs.createReadStream(__dirname + '/locations.json', 'utf8');
+
+	readStream.on('data', function(chunk) {  
+		data += chunk;
+	}).on('end', function() {
+		res.json(data);
+	});
 });
 app.get('/:file', function(req, res, next) {  
-	    res.sendFile(__dirname + '/' + req.params.file );
+	res.sendFile(__dirname + '/' + req.params.file );
+});
+app.get('/:dir/:file', function(req, res, next) {  
+	console.log(req.params.file);
+	res.sendFile(__dirname + '/' + req.params.dir + '/' + req.params.file);
 });
 
 io.on('connection', function (socket) {
