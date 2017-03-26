@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 mSocket.on(Socket.EVENT_CONNECT, onConnect);
                 mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
                 mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
+                mSocket.on("login_error", onLoginError);
 
                 WebView webView = (WebView) findViewById(R.id.webView);
                 webView.getSettings().setJavaScriptEnabled(true);
@@ -88,9 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     if (!app.isConnected()) {
-                        app.sendClientInfo();
+                        app.login();
                         Toast.makeText(MainActivity.this.getApplicationContext(),
-                                R.string.connect, Toast.LENGTH_LONG).show();
+                        R.string.connect, Toast.LENGTH_LONG).show();
                         app.setConnected(true);
                     }
                 }
@@ -126,6 +127,19 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private Emitter.Listener onLoginError = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            MainActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Log.d("onLoginError", "MainActivity");
+                    //Toast.makeText(getApplicationContext(), R.string.error_connect, Toast.LENGTH_LONG).show();
+                }
+            });
+            mSocket.close();
+            startConnect();
+        }
+    };
 
     private void checkPermissions(){
         // Here, thisActivity is the current activity
