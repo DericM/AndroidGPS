@@ -59,7 +59,7 @@ public class AndroidGPS extends Application {
             clientInfo.put("password", mPassword);
             clientInfo.put("deviceID", getDeviceID());
             clientInfo.put("ipAddress", getClientIP());
-            mSocket.emit("connected", clientInfo);
+            mSocket.emit("login", clientInfo);
         }catch(JSONException ex){
             throw new RuntimeException(ex);
         }
