@@ -32,27 +32,19 @@ public class AndroidGPS extends Application {
     private Socket mSocket;
     private String mServerIP;
     private String mServerPort;
+    private String mUsername;
+    private String mPassword;
     private String mServerUrl;
     private boolean isConnected;
 
-    private LocationManager locationManager = null;
-    private LocationListener locationListener = null;
-    private Location currentLocation;
-
+    private MyLocationListener locationListener;
 
     public void onCreate() {
         super.onCreate();
         isConnected = false;
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        currentLocation = getLastBestLocation();
-
         locationListener = new MyLocationListener();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+        locationListener.init();
     }
 
     public Socket getSocket() {
@@ -79,24 +71,47 @@ public class AndroidGPS extends Application {
         return isConnected;
     }
 
-    public void sendClientInfo() {
+    public void login(){
         JSONObject clientInfo = new JSONObject();
-        try {
-            clientInfo.put("id", getDeviceID());
+        try{
+            clientInfo.put("username", mUsername);
+            clientInfo.put("password", mPassword);
+            clientInfo.put("deviceID", getDeviceID());
             clientInfo.put("ipAddress", getClientIP());
-            clientInfo.put("latitude", currentLocation.getLatitude());
-            clientInfo.put("longitude", currentLocation.getLongitude());
-            mSocket.emit("connected", clientInfo);
-        } catch (JSONException ex) {
+            mSocket.emit("login", clientInfo);
+        }catch(JSONException ex){
             throw new RuntimeException(ex);
         }
     }
 
-    private String getClientIP() {
+    public void sendLocationData(){
+        JSONObject clientInfo = new JSONObject();
+        try{
+            clientInfo.put("username", mUsername);
+            clientInfo.put("deviceID", getDeviceID());
+            clientInfo.put("latitude", locationListener.getLoc().getLatitude());
+            clientInfo.put("longitude", locationListener.getLoc().getLongitude());
+            clientInfo.put("time", System.currentTimeMillis() / 1000);
+            mSocket.emit("location", clientInfo);
+        }catch(JSONException ex){
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public void setUsername(final String username){
+        mUsername = username;
+    }
+
+    public void setPassword(final String password){
+        mPassword = password;
+    }
+
+    private String getClientIP(){
         WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
         return ipAddress;
     }
+
 
     private String getDeviceID() {
         TelephonyManager telephonyManager;
@@ -116,47 +131,26 @@ public class AndroidGPS extends Application {
     }
 
 
-    private Location getLastBestLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Location defaultLoc = new Location("default");
-            defaultLoc.setLatitude(0);
-            defaultLoc.setLongitude(0);
-            return defaultLoc;
-        }
-        Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        Location locationNet = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-        long GPSLocationTime = 0;
-        if (null != locationGPS) {
-            GPSLocationTime = locationGPS.getTime();
-        }
-
-        long NetLocationTime = 0;
-
-        if (null != locationNet) {
-            NetLocationTime = locationNet.getTime();
-        }
-
-        if ( 0 < GPSLocationTime - NetLocationTime ) {
-            return locationGPS;
-        }
-        else {
-            return locationNet;
-        }
-    }
-
 
     private class MyLocationListener implements LocationListener {
+
+        private LocationManager locationManager = null;
+        public Location currentLocation;
+
+        public Location getLoc(){
+            return currentLocation;
+        }
 
         @Override
         public void onLocationChanged(Location loc) {
             currentLocation = loc;
             Log.v(TAG, "" + currentLocation.getLatitude());
             Log.v(TAG, "" + currentLocation.getLongitude());
-            String locationMsg= "Location changed : Lat: " + currentLocation.getLatitude()
-                    + " Lng: " + currentLocation.getLongitude();
+            String locationMsg = "Location changed:"
+                    + "\nLat: " + currentLocation.getLatitude()
+                    + "\nLng: " + currentLocation.getLongitude();
             Toast.makeText(getBaseContext(), locationMsg, Toast.LENGTH_SHORT).show();
+            sendLocationData();
         }
 
         @Override
@@ -173,6 +167,16 @@ public class AndroidGPS extends Application {
         public void onStatusChanged(String provider,
                                     int status, Bundle extras) {
             // TODO Auto-generated method stub
+        }
+
+        public void init(){
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 10, locationListener);
         }
     }
 }

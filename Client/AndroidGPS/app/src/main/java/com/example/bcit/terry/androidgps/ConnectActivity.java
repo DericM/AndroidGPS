@@ -19,8 +19,6 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class ConnectActivity extends AppCompatActivity {
-    private EditText mUsernameView;
-    private String mServerIP;
     private Socket mSocket;
     private AndroidGPS app;
 
@@ -55,6 +53,8 @@ public class ConnectActivity extends AppCompatActivity {
         mSocket.off(Socket.EVENT_CONNECT, onConnect);
         mSocket.off(Socket.EVENT_CONNECT_ERROR, onConnectError);
         mSocket.off(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
+        mSocket.off("login_success", onLogin);
+        mSocket.off("login_error", onLoginError);
     }
 
     /**
@@ -69,10 +69,15 @@ public class ConnectActivity extends AppCompatActivity {
 
         EditText serverIpView = (EditText)findViewById(R.id.input_server_ip);
         EditText serverPortView = (EditText)findViewById(R.id.input_server_port);
+        EditText usernameView = (EditText)findViewById(R.id.input_username);
+        EditText passwordView = (EditText)findViewById(R.id.input_password);
+
 
         // Store values at the time of the connect attempt.
         String serverIP = serverIpView.getText().toString().trim();
         String serverPort = serverPortView.getText().toString().trim();
+        String username = usernameView.getText().toString().trim();
+        String password = passwordView.getText().toString().trim();
 
         // Check for a valid ip address.
         if (TextUtils.isEmpty(serverIP)) {
@@ -92,28 +97,49 @@ public class ConnectActivity extends AppCompatActivity {
             return;
         }
 
+        // Check for a valid username.
+        if (TextUtils.isEmpty(username)) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            usernameView.setError(getString(R.string.error_field_required));
+            usernameView.requestFocus();
+            return;
+        }
+
+        // Check for a valid password.
+        if (TextUtils.isEmpty(password)) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            passwordView.setError(getString(R.string.error_field_required));
+            passwordView.requestFocus();
+            return;
+        }
+
         mSocket = app.setupSocket(serverIP, serverPort);
         mSocket.connect();
+
+        app.setUsername(username);
+        app.setPassword(password);
+
 
         mSocket.on(Socket.EVENT_CONNECT, onConnect);
         mSocket.on(Socket.EVENT_CONNECT_ERROR, onConnectError);
         mSocket.on(Socket.EVENT_CONNECT_TIMEOUT, onConnectError);
+        mSocket.on("login_success", onLogin);
+        mSocket.on("login_error", onLoginError);
     }
 
     private Emitter.Listener onConnect = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            app.sendClientInfo();
+            app.login();
             app.setConnected(true);
             ConnectActivity.this.runOnUiThread(new Runnable() {
                 public void run() {
                     Log.d("onConnect", "ConnectActivity");
-                    Toast.makeText(getApplicationContext(), R.string.connect, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), R.string.connect, Toast.LENGTH_LONG).show();
                 }
             });
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent);
-            finish();
         }
     };
 
@@ -123,6 +149,36 @@ public class ConnectActivity extends AppCompatActivity {
             ConnectActivity.this.runOnUiThread(new Runnable() {
                 public void run() {
                     Log.d("onConnectError", "ConnectActivity");
+                    Toast.makeText(getApplicationContext(), R.string.error_connect, Toast.LENGTH_LONG).show();
+                }
+            });
+            mSocket.close();
+        }
+    };
+
+    private Emitter.Listener onLogin = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            ConnectActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Log.d("onLogin", "ConnectActivity");
+                    Toast.makeText(getApplicationContext(), R.string.connect, Toast.LENGTH_LONG).show();
+                }
+            });
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    };
+
+    private Emitter.Listener onLoginError = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            app.login();
+            app.setConnected(true);
+            ConnectActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Log.d("onLoginError", "ConnectActivity");
                     Toast.makeText(getApplicationContext(), R.string.error_connect, Toast.LENGTH_LONG).show();
                 }
             });

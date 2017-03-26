@@ -2,6 +2,9 @@
     <string name="app_name">AndroidGPS</string>
     <string name="edit_server_ip">Enter Server IP Address</string>
     <string name="edit_server_port">Enter Server Port</string>
+    <string name="edit_username">Enter Username</string>
+    <string name="edit_password">Enter Password</string>
+
     <string name="action_connect">Connect</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_connect">Failed to connect</string>
