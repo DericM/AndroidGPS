@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -18,7 +20,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.URISyntaxException;
+import java.util.Enumeration;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -37,14 +42,9 @@ public class AndroidGPS extends Application {
     private String mServerUrl;
     private boolean isConnected;
 
-    private MyLocationListener locationListener;
-
     public void onCreate() {
         super.onCreate();
         isConnected = false;
-
-        locationListener = new MyLocationListener();
-        locationListener.init();
     }
 
     public Socket getSocket() {
@@ -84,13 +84,14 @@ public class AndroidGPS extends Application {
         }
     }
 
-    public void sendLocationData(){
+    public void sendLocationData(Location location){
         JSONObject clientInfo = new JSONObject();
         try{
             clientInfo.put("username", mUsername);
             clientInfo.put("deviceID", getDeviceID());
-            clientInfo.put("latitude", locationListener.getLoc().getLatitude());
-            clientInfo.put("longitude", locationListener.getLoc().getLongitude());
+            clientInfo.put("deviceIP", getClientIP());
+            clientInfo.put("latitude", location.getLatitude());
+            clientInfo.put("longitude", location.getLongitude());
             clientInfo.put("time", System.currentTimeMillis() / 1000);
             mSocket.emit("location", clientInfo);
         }catch(JSONException ex){
@@ -101,82 +102,85 @@ public class AndroidGPS extends Application {
     public void setUsername(final String username){
         mUsername = username;
     }
-
     public void setPassword(final String password){
         mPassword = password;
     }
+    public String getUsername(){return mUsername;}
+    public String getPassword(){
+        return mPassword;
+    }
+
 
     private String getClientIP(){
-        WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-        String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-        return ipAddress;
+        try {
+            ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+            @SuppressWarnings("deprecation")
+            NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            @SuppressWarnings("deprecation")
+            NetworkInfo mobile = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if (wifi.isConnected()) {
+                // If Wi-Fi connected
+                return getWifiIP();
+            }
+
+            if (mobile.isConnected()) {
+                // If Internet connected
+                return getMobileIP();
+            }
+
+            return null;
+        }catch(SecurityException e){
+            return null;
+        }
+    }
+
+    private String getMobileIP(){
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
+                 en.hasMoreElements();) {
+                NetworkInterface networkinterface = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = networkinterface.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Log.e("Current IP", ex.toString());
+        }
+        return null;
+    }
+
+    private String getWifiIP()
+    {
+        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        @SuppressWarnings("deprecation")
+        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+        return ip;
     }
 
 
     private String getDeviceID() {
-        TelephonyManager telephonyManager;
+        try {
+            TelephonyManager telephonyManager;
 
-        telephonyManager =
-                (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+            telephonyManager =
+                    (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
         /*
          * getDeviceId() function Returns the unique device ID.
          * for example,the IMEI for GSM and the MEID or ESN for CDMA phones.
          */
-        return telephonyManager.getDeviceId();
+            return telephonyManager.getDeviceId();
+        }catch(SecurityException e){
+            return null;
+        }
     }
 
     public String getServerUrl() {
         return mServerUrl;
     }
 
-
-
-    private class MyLocationListener implements LocationListener {
-
-        private LocationManager locationManager = null;
-        public Location currentLocation;
-
-        public Location getLoc(){
-            return currentLocation;
-        }
-
-        @Override
-        public void onLocationChanged(Location loc) {
-            currentLocation = loc;
-            Log.v(TAG, "" + currentLocation.getLatitude());
-            Log.v(TAG, "" + currentLocation.getLongitude());
-            String locationMsg = "Location changed:"
-                    + "\nLat: " + currentLocation.getLatitude()
-                    + "\nLng: " + currentLocation.getLongitude();
-            Toast.makeText(getBaseContext(), locationMsg, Toast.LENGTH_SHORT).show();
-            sendLocationData();
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-            // TODO Auto-generated method stub
-        }
-
-        @Override
-        public void onStatusChanged(String provider,
-                                    int status, Bundle extras) {
-            // TODO Auto-generated method stub
-        }
-
-        public void init(){
-            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 10, locationListener);
-        }
-    }
 }
