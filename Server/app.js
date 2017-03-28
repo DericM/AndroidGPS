@@ -5,7 +5,7 @@
 *
 * DATE: March 27, 2017
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 *
 * PROGRAMMER: Terry Kang
 *
@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: function(req, res, next)
@@ -70,7 +70,7 @@ console.log(loginData);
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: app.get('/', auth, function(req, res,next)
@@ -90,7 +90,7 @@ app.get('/', auth, function(req, res,next) {
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: app.get('/login', function(req, res,next)
@@ -110,7 +110,7 @@ app.get('/login', function(req, res,next) {
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: app.get('/doLogin', auth, function(req, res,next)
@@ -130,7 +130,7 @@ app.get('/doLogin', auth, function(req, res,next) {
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: app.post('/doLogin',function(req,res)
@@ -165,7 +165,7 @@ app.post('/doLogin',function(req,res) {
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: app.get('/locations', function(req, res,next)
@@ -198,7 +198,7 @@ app.get('/locations', function(req, res,next) {
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: app.get('/:file', auth, function(req, res, next)
@@ -218,7 +218,7 @@ app.get('/:file', auth, function(req, res, next) {
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: app.get('/:dir/:file', auth, function(req, res, next)
@@ -240,7 +240,7 @@ app.get('/:dir/:file', auth, function(req, res, next) {
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 * PROGRAMMER: Terry Kang
 *
 * INTERFACE: io.on('connection', function (socket)
@@ -260,7 +260,7 @@ io.on('connection', function (socket) {
 	* DATE: March 27, 2017
 	* REVISIONS: (Date and Description)
 	*
-	* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+	* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 	* PROGRAMMER: Terry Kang
 	*
 	* INTERFACE: socket.on('disconnect', function ()
@@ -284,7 +284,7 @@ io.on('connection', function (socket) {
 	* DATE: March 27, 2017
 	* REVISIONS: (Date and Description)
 	*
-	* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+	* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 	* PROGRAMMER: Terry Kang
 	*
 	* INTERFACE: socket.on('login', function (userdata)
@@ -337,7 +337,7 @@ io.on('connection', function (socket) {
 	* DATE: March 27, 2017
 	* REVISIONS: (Date and Description)
 	*
-	* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+	* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 	* PROGRAMMER: Terry Kang
 	*
 	* INTERFACE: socket.on('location', function (data)

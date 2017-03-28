@@ -5,7 +5,7 @@
 *
 * DATE: March 27, 2017
 *
-* DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+* DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
 *
 * PROGRAMMER: Terry Kang
 *
@@ -28,7 +28,7 @@
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+    * DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: function loadMap()
@@ -66,7 +66,7 @@
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+    * DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: function addMarker(index, location, username, markerName)
@@ -118,7 +118,7 @@
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+    * DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: function loadLocations()
@@ -192,7 +192,7 @@
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER: Jackob Frank / Mark Tattrie / Deric Mccadden
+    * DESIGNER: Jacob Frank / Mark Tattrie / Deric Mccadden
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: function loadLocations()
