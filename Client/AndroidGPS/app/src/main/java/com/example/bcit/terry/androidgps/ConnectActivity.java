@@ -27,7 +27,7 @@ import io.socket.emitter.Emitter;
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER:   Jackob Frank / Mark Tattrie
+* DESIGNER:   Jacob Frank / Mark Tattrie
 * PROGRAMMER: Terry Kang / Deric Mccadden
 *
 * NOTES:
@@ -43,7 +43,7 @@ public class ConnectActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: protected void onCreate(Bundle savedInstanceState)
@@ -81,7 +81,7 @@ public class ConnectActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: protected void onDestroy()
@@ -111,7 +111,7 @@ public class ConnectActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private void attemptConnect()
@@ -196,7 +196,7 @@ public class ConnectActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onConnect
@@ -224,7 +224,7 @@ public class ConnectActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onConnectError
@@ -251,7 +251,7 @@ public class ConnectActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onLogin
@@ -280,7 +280,7 @@ public class ConnectActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onLoginError
