@@ -8,7 +8,7 @@ see [Wikipedia](https://en.wikipedia.org/wiki/Global_Positioning_System)
 
 
 ## The Setup/Build
----
+
 1. Ensure you have android v16 (Ice Cream Sandwich) or later for the application  
 a. [Find Android Version] (http://www.androidcentral.com/android-101-how-check-your-os-version)  
 2. Ensure you have a linux machine to run the server  
