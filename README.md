@@ -1,5 +1,5 @@
 # Android GPS Tracker User Guide
----
+
 
 ## what is GPS?
 see [Wikipedia](https://en.wikipedia.org/wiki/Global_Positioning_System)
@@ -17,7 +17,7 @@ a. [Find Android Version] (http://www.androidcentral.com/android-101-how-check-y
 >https://github.com/COMP4985-AndroidGPS/AndroidGPS.git   
 
 ## The Server 
---- 
+
 >The server is a Node.js program that uses socket-io to establish a socket connection to a client and receive GPS coordinates from the client's Android device.   
 The server also serves as an http server to display a google map and plot the coordinates received from the client's via express library.
 
@@ -45,7 +45,7 @@ a. $ node app.js
     
 
 ## The Android Application
-----
+
 >The Android Application uses socket-io to communicate with and transmit location data to a remote server.  Using wireless networks as well as the android device's on-board GPS chip, the application obtains the devices latitude and longitudinal coordinates and sends them to the server to be stored and displayed in the web browser. 
 
 ##### To build the Application
