@@ -39,7 +39,7 @@ import static android.content.ContentValues.TAG;
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER:   Jackob Frank / Mark Tattrie
+* DESIGNER:   Jacob Frank / Mark Tattrie
 * PROGRAMMER: Terry Kang / Deric Mccadden
 *
 * NOTES:
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private void startConnect()
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private void onActivityResult()
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onConnect
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onDisconnect
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onConnectError
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private Emitter.Listener onLoginError
@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: private void checkPermissions()
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Deric Mccadden / Terry Kang
     *
     * NOTES:
@@ -341,7 +341,7 @@ public class MainActivity extends AppCompatActivity {
         * DATE: March 27, 2017
         * REVISIONS: (Date and Description)
         *
-        * DESIGNER:   Jackob Frank / Mark Tattrie
+        * DESIGNER:   Jacob Frank / Mark Tattrie
         * PROGRAMMER: Deric Mccadden
         *
         * INTERFACE: public void onLocationChanged(Location loc)
@@ -385,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
         * DATE: March 27, 2017
         * REVISIONS: (Date and Description)
         *
-        * DESIGNER:   Jackob Frank / Mark Tattrie
+        * DESIGNER:   Jacob Frank / Mark Tattrie
         * PROGRAMMER: Deric Mccadden
         *
         * INTERFACE: public void init()
