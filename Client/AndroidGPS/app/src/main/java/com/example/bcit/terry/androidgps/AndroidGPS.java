@@ -48,7 +48,7 @@ import io.socket.client.Socket;
 * DATE: March 27, 2017
 * REVISIONS: (Date and Description)
 *
-* DESIGNER:   Jackob Frank / Mark Tattrie
+* DESIGNER:   Jacob Frank / Mark Tattrie
 * PROGRAMMER: Terry Kang / Deric Mccadden
 *
 * NOTES:
@@ -69,7 +69,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public void onCreate()
@@ -90,7 +90,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: Socket getSocket()
@@ -110,7 +110,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public Socket setupSocket(final String serverIP, final String serverPort)
@@ -138,7 +138,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public void setConnected(boolean connected)
@@ -158,7 +158,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public boolean isConnected()
@@ -178,7 +178,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public void login()
@@ -207,7 +207,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Deric Mccadden
     *
     * INTERFACE: public void sendLocationData(Location location)
@@ -239,7 +239,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public void setUsername(final String username)
@@ -259,7 +259,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public void setPassword(final String password)
@@ -279,7 +279,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public String getUsername()
@@ -297,7 +297,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public String getPassword()
@@ -317,7 +317,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public String getClientIP()
@@ -357,7 +357,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public String getMobileIP()
@@ -391,7 +391,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public String getWifiIP()
@@ -415,7 +415,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public String getDeviceID()
@@ -448,7 +448,7 @@ public class AndroidGPS extends Application {
     * DATE: March 27, 2017
     * REVISIONS: (Date and Description)
     *
-    * DESIGNER:   Jackob Frank / Mark Tattrie
+    * DESIGNER:   Jacob Frank / Mark Tattrie
     * PROGRAMMER: Terry Kang
     *
     * INTERFACE: public String getServerUrl()
