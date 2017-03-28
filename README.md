@@ -10,7 +10,7 @@ see [Wikipedia](https://en.wikipedia.org/wiki/Global_Positioning_System)
 ## The Setup/Build
 
 1. Ensure you have android v16 (Ice Cream Sandwich) or later for the application  
-a. [Find Android Version] (http://www.androidcentral.com/android-101-how-check-your-os-version)  
+a. [Find Android Version](http://www.androidcentral.com/android-101-how-check-your-os-version)  
 2. Ensure you have a linux machine to run the server  
 3. Clone the repository using the following link:
 
@@ -50,7 +50,7 @@ a. $ node app.js
 
 ##### To build the Application
 
-1. Install the most recent version of [Android Studio] (https://developer.android.com/studio/index.html)
+1. Install the most recent version of [Android Studio](https://developer.android.com/studio/index.html)
 2. Run Android Studio
 3. Open the AndroidGPS project in the client directory of the cloned repository
 4. Click **Build APK** under the **Build** toolbar
@@ -65,7 +65,7 @@ a. $ node app.js
 
 ##### Install the Application using apk
 
-1. Enable the [installation of 3rd party apps] (http://www.android.pk/blog/tutorials/how-to-enable-third-party-apps-installation-on-android-phones/)
+1. Enable the [installation of 3rd party apps](http://www.android.pk/blog/tutorials/how-to-enable-third-party-apps-installation-on-android-phones/)
 2. After the project is built, transfer the generated APK from your computer to the device  
 a. APK created in: AndroidGPS\app\build\outputs\apk
 2. Install the application   
