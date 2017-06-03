@@ -62,7 +62,7 @@ public class ConnectActivity extends AppCompatActivity {
         EditText serverIpView = (EditText)findViewById(R.id.input_server_ip);
         EditText serverPortView = (EditText)findViewById(R.id.input_server_port);
 
-        serverIpView.setText("96.49.228.48");
+        serverIpView.setText("ec2-13-58-60-176.us-east-2.compute.amazonaws.com");
         serverPortView.setText("4200");
 
         Button connectButton = (Button) findViewById(R.id.connect_button);
